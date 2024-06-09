@@ -14,6 +14,6 @@ export class BookService extends BaseClientProxy implements IBookService {
     super(http);
   }
   dumpBook(): Observable<any> {
-    return this.basePost(`${environment.subscriptionApiUrl}/api/books/dump`, '');
+    return this.basePost(`${environment.bookApiUrl}/api/books/dump`, '');
   }
 }

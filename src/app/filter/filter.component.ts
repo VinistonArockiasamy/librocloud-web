@@ -80,9 +80,10 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   public dumpBook(): void {
     this._bookService.dumpBook().subscribe({
-      next: (response: string) => {
-        this.openSnackBar(response, 'e-success');
-      },
+      next: (response: any) => {
+        this.openSnackBar(response.status, 'e-success');
+        this.applyFilter(true);
+      }
     });
   }
 
