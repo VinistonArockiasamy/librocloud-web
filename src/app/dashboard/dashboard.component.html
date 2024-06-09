@@ -1,0 +1,8 @@
+<div class="dashboard" fxLayout.xs="column">
+  <div fxLayout="column" fxFlex="20" fxLayoutGap="20px" class="side-bar">
+    <app-filter></app-filter>
+  </div>
+  <div fxLayout="column" fxFlex="80" class="content" fxalign="space-between">
+    <app-browse-grid [tableColumns]="tableColumns"></app-browse-grid>
+  </div>
+</div>

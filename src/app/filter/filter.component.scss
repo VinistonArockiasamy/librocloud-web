@@ -1,0 +1,102 @@
+@import '../../assets/scss/shared.scss';
+
+.e-filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.e-gradient-button {
+  background: $color-librocloud-slate;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #fff !important;
+  @include font(16px,400,16px);
+  height: 36px;
+  margin-bottom: 30px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+  .fa-plus {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+  }
+}
+
+.e-expansion-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  span {
+    @extend %heading-h4;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .far.fa-bookmark {
+    color: $color-teal;
+    font-size: 20px;
+    position: relative;
+    bottom: 5px;
+  }
+}
+
+.e-filtered-toggle {
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+
+.mat-expansion-panel {
+  background: rgba(233,238,239,.2);
+  border: 1px solid $color-cool-grey-light;
+}
+
+.e-checkbox-label {
+  padding: 3px 0px;
+  margin-bottom: 2px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.e-expansion-panel-scrollable {
+  height: 180px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-left: -5%;
+}
+
+:host ::ng-deep .e-filter-input {
+  margin-left: -3%;
+  .mat-mdc-form-field-focus-overlay{
+    background-color: rgba(233, 238, 239, 0.2);
+  }
+}
+
+.e-link {
+  @include font(13px, 400, 13px);
+  color: $color-teal;
+  position: relative;
+  top: -5px;
+  transition: color $transition-default-out;
+
+  &:hover {
+      color: $color-teal-light;
+      cursor: pointer;
+      transition: color $transition-default-in;
+  }
+  .e-transparent-backdrop {
+    background: rgba(255, 255, 255, 0.288);
+    opacity: 0.2;
+  }
+}

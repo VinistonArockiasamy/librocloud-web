@@ -1,0 +1,6 @@
+@mixin font-config($font-size, $font-weight: 400, $line-height: inherit, $letter-spacing: 0.015rem) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}

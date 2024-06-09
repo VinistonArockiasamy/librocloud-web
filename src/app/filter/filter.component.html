@@ -1,0 +1,105 @@
+<aside>
+  <div>
+    <button class="e-gradient-button" (click)="dumpBook()" mat-button>
+      <div>Book dump</div>
+    </button>
+  </div>
+
+  <div class="e-expansion">
+
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true" id="panelOne">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Genre</mat-panel-title>
+        </mat-expansion-panel-header>
+        <a
+          href="javascript: void(0);"
+          id="clearAllGenreSelection"
+          (click)="clearAllGenreSelection()"
+          class="e-link"
+          >Clear all</a
+        >
+        <div class="e-expansion-panel-scrollable">
+          <div
+            fxLayout="row"
+            *ngFor="let genre of genres"
+          >
+            <div fxFlex class="e-checkbox-label">
+              <mat-checkbox
+                ngDefaultControl
+                [(ngModel)]="genre.isSelected"
+                title="{{ genre.name | titlecase }}"
+                >{{ genre.name | titlecase }}</mat-checkbox
+              >
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel id="panelTwo" *ngIf="authors.length">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Author</mat-panel-title>
+        </mat-expansion-panel-header>
+        <a
+          href="javascript: void(0);"
+          id="clearAllAuthorSelection"
+          (click)="clearAllAuthorSelection()"
+          class="e-link"
+          >Clear all</a
+        >
+        <div class="e-expansion-panel-scrollable">
+          <div
+            fxLayout="row"
+            *ngFor="let author of authors"
+          >
+            <div fxFlex class="e-checkbox-label">
+              <mat-checkbox
+                ngDefaultControl
+                [(ngModel)]="author.isSelected"
+                title="{{ author.name }}"
+                >{{ author.name }}</mat-checkbox
+              >
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <form [formGroup]="filterForm">
+        <mat-expansion-panel
+          id="panelThree"
+          [ngClass]="
+            filterForm.controls['title'].errors && isFiltered
+              ? 'error-label'
+              : ''
+          "
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Title
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field class="e-filter-input">
+            <input
+              matInput
+              placeholder="Search Title"
+              [(ngModel)]="title"
+              formControlName="title"
+              ngDefaultControl
+            />
+          </mat-form-field>
+        </mat-expansion-panel>
+      </form>
+    </mat-accordion>
+  </div>
+  <div class="e-filter-buttons">
+    <button mat-flat-button class="e-button-secondary" (click)="reset()">
+      Reset
+    </button>
+    <button
+      mat-flat-button
+      class="e-button-primary"
+      id="btnFilter"
+      (click)="filter()"
+    >
+      Filter
+    </button>
+  </div>
+</aside>

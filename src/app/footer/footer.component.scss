@@ -1,0 +1,14 @@
+@import '../../assets/scss/shared.scss';
+
+.e-footer-content {
+  @extend %paragraph;
+  align-items: center;
+  color: $color-grey-medium;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 20px;
+  position: relative;
+  width: 100%;
+  display: flex;
+}

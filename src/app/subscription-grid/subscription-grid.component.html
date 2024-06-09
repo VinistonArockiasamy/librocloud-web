@@ -1,0 +1,78 @@
+<div *ngIf="isLoading" class="e-loading-spinner"></div>
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8"
+  id="e-grid-table"
+  (matSortChange)="sortData($event)"
+  aria-describedby="Notification table"
+>
+  <ng-container *ngFor="let col of tableColumns" [matColumnDef]="col.columnDef">
+    <th
+      id="header{{ col.header }}"
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      [disabled]="col.columnDef === 'select' ? true : false"
+      class="e-table-column-width"
+    >
+      <div>
+        <mat-checkbox
+          class="e-select-checkbox"
+          *ngIf="col.columnDef === 'select'"
+          (change)="selectAllBooks()"
+          [(ngModel)]="isAllSelected"
+          [ngClass]="{ hide: paginator.length == 0 }"
+        ></mat-checkbox>
+      </div>
+      {{ col.header }}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      {{ col.columnDef === "select" ? "" : col.cell(row) }}
+      <div>
+        <mat-checkbox
+          class="e-select-checkbox"
+          *ngIf="col.columnDef === 'select'"
+          [(ngModel)]="row.isSelected"
+          (change)="selectBook()"
+        ></mat-checkbox>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+</table>
+
+<div
+  *ngIf="dataSource.data.length === 0 && !isLoading"
+  class="e-no-records"
+  fxLayoutAlign="center center"
+>
+  <span *ngIf="isFilterApplied; else noRecord"
+    >No results found. Please change your filter selections.</span
+  >
+  <ng-template #noRecord>
+    There are no books in your subscription list.
+  </ng-template>
+</div>
+
+<div class="e-grid-footer">
+  <mat-paginator
+    [ngClass]="{ hide: paginator.length == 0 }"
+    [pageSizeOptions]="[10, 20, 30, 40]"
+    [pageSize]="pageSize"
+    showFirstLastButtons
+    class="e-paginator"
+    (page)="pageHasChanged($event)"
+  ></mat-paginator>
+  <button
+    mat-button
+    (click)="unsubscribeBooks()"
+    *ngIf="isShowDelete"
+    id="deleteBtn"
+    class="e-button-delete mrgn-top"
+  >
+    Unsubscribe Selected
+  </button>
+</div>

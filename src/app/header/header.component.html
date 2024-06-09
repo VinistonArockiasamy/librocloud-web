@@ -1,0 +1,29 @@
+<div class="l-header-contents">
+  <button class="l-logo">
+    <i class="fa fa-book"></i>
+    <strong>Bookstore <span>by Librocloud</span></strong>
+  </button>
+  <div class="l-menu">
+    <nav>
+      <button (click)="isSubscriptionRoute = true" [ngClass]="{ 'l-active': isSubscriptionRoute }"
+        routerLink="/subscription">
+        My Subscription
+      </button>
+      <button (click)="isSubscriptionRoute = false" routerLink="/browse"
+        [ngClass]="{ 'l-active': !isSubscriptionRoute }">
+        Browse
+      </button>
+      <button>Logout <i class="fa fa-sign-out"></i></button>
+    </nav>
+
+    <button class="l-user-info" aria-label="Click to view user profile information">
+      <div class="l-user-icon">
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="l-username">
+        <span>Welcome</span>
+        <strong>{{ userName }}</strong>
+      </div>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,228 @@
+@use "../../assets/scss/colors";
+@use "../../assets/scss/mixins";
+@import "../../assets/scss/shared.scss";
+
+.e-app-name {
+  @extend %heading-h1;
+  color: $color-grey-dark-medium;
+  margin-left: 10px;
+}
+
+.e-app-title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.e-app-title-icon {
+  @extend %flex-centered;
+  background-color: $color-librocloud-yellow;
+  color: #fff;
+  font-size: 24px;
+  height: 40px;
+  width: 40px;
+}
+
+.e-header {
+  align-items: center;
+  background-color: lighten(colors.$light-slate, 40%);
+  display: flex;
+  flex-flow: row nowrap;
+  height: 50px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.e-user {
+  @extend %flex-centered;
+  background-color: #fff;
+  border: 1px solid $color-teal;
+  border-radius: 25px;
+  color: $color-teal;
+  font-size: 14px;
+  height: 24px;
+  width: 24px;
+}
+
+.e-user-name {
+  @extend %paragraph;
+  color: $color-grey-dark-medium;
+  margin: 0 7px;
+}
+
+#user-action {
+  @extend %e-secondary-icon;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.e-user-menu {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  span.fas {
+    margin-right: 4px;
+    text-align: center;
+    width: 15px;
+  }
+}
+
+.e-ie-info {
+  @include font(14px, 500, 20px);
+  background-color: $color-info-light;
+  color: $color-info-dark;
+  padding: 15px 20px;
+  width: auto;
+}
+
+.l-header-contents {
+  align-items: center;
+  display: flex;
+  height: 55px;
+  margin: 0 auto;
+  max-width: 1280px;
+  justify-content: space-between;
+  padding: 0 15px;
+  nav {
+    button {
+      cursor: pointer;
+    }
+  }
+}
+
+button.l-logo {
+  @include mixins.font-config(20px);
+  background-color: colors.$white;
+  border: 0;
+  border-radius: 3px;
+  color: colors.$dark-slate;
+  padding: 7px 20px 4px 20px;
+
+  i.fa-book {
+    color: colors.$orange;
+    font-style: italic;
+    margin-right: 10px;
+  }
+
+  strong {
+    font-weight: 600;
+
+    span {
+      @include mixins.font-config(10px);
+    }
+  }
+}
+
+.l-menu {
+  align-items: center;
+  display: flex;
+
+  nav {
+    margin-right: 40px;
+
+    button {
+      @include mixins.font-config(13px);
+      background: rgba(colors.$white, 0.35);
+      border: 0;
+      border-radius: 3px;
+      color: colors.$dark-blue;
+      height: 25px;
+      padding: 0 15px;
+      transition: all 0.15s ease-in-out;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background: rgba(colors.$white, 0.75);
+        color: $color-librocloud-slate !important;
+      }
+
+      &.l-active {
+        background-color: $color-librocloud-slate;
+        color: colors.$white;
+        font-weight: 500;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+          background-color: #fff !important;
+          color: $color-librocloud-slate !important;
+        }
+      }
+
+      i.fa-sign-out {
+        margin: 0 -5px 0 5px;
+      }
+    }
+  }
+
+  button.l-user-info {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: colors.$dark-slate;
+    display: flex;
+    padding: 0;
+    text-align: left;
+    transition: color 0.15s ease-in-out;
+
+    .l-user-icon {
+      align-items: center;
+      background-color: colors.$dark-blue;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      outline: 2px solid colors.$orange;
+      justify-content: center;
+      height: 30px;
+      margin-right: 8px;
+      transition: background-color 0.15s ease-in-out;
+      width: 30px;
+
+      i.fa-user {
+        color: colors.$white;
+        font-size: 14px;
+        margin-bottom: -1px;
+      }
+    }
+
+    .l-username {
+      line-height: 13px;
+
+      span {
+        @include mixins.font-config(10px, 400);
+        display: block;
+        transition: color 0.15s ease-in-out;
+      }
+
+      strong {
+        @include mixins.font-config(13px, 500);
+      }
+    }
+
+    &:hover {
+      color: colors.$bright-blue;
+
+      .l-user-icon {
+        background-color: colors.$bright-blue;
+      }
+
+      .l-username span {
+        color: colors.$bright-blue;
+      }
+    }
+  }
+}

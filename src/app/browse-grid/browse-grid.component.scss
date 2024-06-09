@@ -1,0 +1,141 @@
+@import '../../assets/scss/shared.scss';
+
+#e-grid-table {
+  width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-header-row {
+  background-color: $color-librocloud-slate;
+  height: 40px;
+  .mat-mdc-header-cell {
+    color: #fff;
+    @include font(13px, 500, 13px);
+  }
+  .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+    border-color: white;
+    background-color: transparent;
+}
+}
+
+.e-table-column-width {
+  &:first-child {
+    width: 7%;
+  }
+  &:nth-child(2) {
+    width: 24%;
+  }
+  &:nth-child(3) {
+    width: 15%;
+  }
+  &:nth-child(4) {
+    width: 15%;
+  }
+  &:nth-child(5) {
+    width: 15%;
+  }
+  &:last-child {
+    width: 24%;
+  }
+}
+
+.e-paginator {
+  display: inline;
+  margin-top: 2px;
+  background-color: transparent;
+}
+
+.hide {
+  display: none;
+}
+
+.e-no-records {
+  @include font(16px, 400, 24px);
+  background-color: $color-info-light;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  color: $color-info-dark;
+  display: block;
+  padding: 20px 10px;
+}
+
+.e-grid-footer {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+
+
+// 5. Mat Grid/Table Overrides
+:host ::ng-deep .mat-mdc-table {
+  border-left: 1px solid $color-cool-grey-light;
+  border-right: 1px solid $color-cool-grey-light;
+  box-shadow: none !important;
+}
+
+tr.mat-mdc-row {
+  background-color: #fff;
+  border-color: $color-cool-grey-light;
+  transition: background $transition-default-out, color $transition-default-out;
+
+  &:hover {
+    background-color: rgba(233, 238, 239, 0.5);
+    cursor: pointer;
+    transition: background $transition-default-in, color $transition-default-in;
+
+    td.mat-mdc-cell {
+      color: $color-librocloud-slate;
+    }
+  }
+
+  &:active,
+  &:focus {
+    background-color: rgba(0, 133, 120, 0.1);
+
+    td.mat-mdc-cell {
+      color: $color-teal;
+    }
+  }
+}
+
+mat-footer-row,mat-header-row,mat-row,td.mat-mdc-cell,td.mat-footer-cell,th.mat-header-cell {
+  border-bottom-color: $color-cool-grey-light;
+}
+
+td.mat-mdc-cell, td.mat-footer-cell, th.mat-header-cell {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.mdc-data-table__row:last-child .mat-mdc-cell {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $color-cool-grey-light;
+}
+
+td.mat-mdc-cell {
+  @include font(13px, 400, 13px);
+  color: $color-grey-dark-medium;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: $color-teal-light;
+}
+
+// 6. Paginator and Icons
+:host ::ng-deep .mat-icon-button[disabled] {
+  color: rgba(52, 101, 127, 0.45) !important;
+}
+
+:host ::ng-deep .mat-icon-button {
+  color: $color-librocloud-slate;
+}
+
+:host ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $color-librocloud-slate;
+
+  .mat-form-field-ripple {
+    background-color: $color-librocloud-slate;
+  }
+}

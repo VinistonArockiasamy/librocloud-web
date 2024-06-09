@@ -1,0 +1,244 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+// @import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@use "../../assets/scss/colors";
+@use 'sass:map';
+@use '@angular/material' as mat;
+@include mat.core();
+
+
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+// @include mat-core();pl
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$notification-primary: mat.define-palette(mat.$indigo-palette);
+$notification-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$notification-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object (a Sass map containing all of the palettes).
+// $notification-theme: mat.define-light-theme(
+//   $notification-primary,
+//   $notification-accent,
+//   $notification-warn
+// );
+
+$notification-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $notification-primary,
+      accent: $notification-accent,
+      warn: $notification-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($notification-theme);
+
+@import 'shared.scss';
+
+/***************************************************
+Custom Overrides TOC
+--------------------
+
+1.  Mat-Menu Styling Overrides on Log Out Pop-up
+2.  Mat-Menu Styling Overrides on Add New Pop-up
+3.  Expansion Panel and Nested Input Field Overrides
+4.  Custom Checkbox Colour Override
+8.  Error Message Styling Overrides
+9.  Input Field & Text Area Overrides
+12. Material Snackbar Overrides
+
+
+***************************************************/
+
+// 1. Mat-Menu Styling Overrides on Log Out Pop-up
+.e-logout + .cdk-overlay-connected-position-bounding-box {
+  $bounding-box-width: 150px !important;
+
+  top: 45px !important;
+  left: calc(50vw + (680px - 152px)) !important;
+  width: $bounding-box-width;
+
+  .mat-menu-panel {
+    box-shadow: none !important;
+    border-bottom: 2px solid $color-teal;
+    min-height: 30px;
+    overflow: hidden;
+  }
+
+  .mat-menu-content {
+    background: #e9eeef;
+    border-radius: 0px !important;
+    color: $color-teal;
+    width: $bounding-box-width;
+  }
+
+  .mat-menu-item {
+    @extend %paragraph;
+    @extend %flex-centered;
+    color: $color-teal;
+    height: 30px;
+
+    span {
+      padding: 3px;
+    }
+  }
+}
+
+// 3. Expansion Panel and Nested Input Field Overrides
+.mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel-header {
+  @include font(16px, 400, 20px);
+  color: $color-grey-dark-medium;
+}
+
+.mat-expansion-indicator::after,
+.mat-select-arrow,
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $color-librocloud-slate;
+}
+
+.mat-expansion-panel.mat-expanded {
+  .mat-expansion-panel-body {
+    border-bottom: 2px solid $color-librocloud-slate;
+
+    .mat-button {
+      text-align: left;
+      width: 100%;
+
+      &:hover {
+        .mat-button-wrapper {
+          color: $color-librocloud-slate;
+        }
+      }
+    }
+
+    .mat-button-wrapper {
+      @include font(14px, 400, 14px);
+      color: $color-grey-medium;
+
+      &:hover {
+        color: $color-librocloud-slate;
+      }
+
+      svg {
+        fill: $color-librocloud-slate;
+      }
+    }
+
+    .mat-form-field-wrapper {
+      input.mat-mdc-input-element {
+        caret-color: $color-teal;
+      }
+    }
+
+    .mat-form-field.mat-focused {
+      .mat-form-field-ripple {
+        background-color: $color-librocloud-slate;
+      }
+
+      .mat-form-field-label {
+        color: $color-librocloud-slate;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.mat-expansion-panel.error-label,
+.mat-expansion-panel.mat-expanded.error-label {
+  background: $color-error-light !important;
+  border-color: $color-error-light !important;
+
+  .mat-expansion-panel-header {
+    color: $color-error-dark;
+
+    .mat-expansion-indicator::after,
+    .mat-select-arrow,
+    .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+      color: $color-error-dark;
+    }
+  }
+}
+
+// 4. Custom Checkbox Colour Override
+.mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+.mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: colors.$dark-blue !important;
+  background-color: colors.$dark-blue !important;
+}
+
+// 9. Input Field & Text Area Overrides
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $color-grey-dark-medium;
+}
+
+.mat-input-element {
+  caret-color: colors.$dark-blue;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 164px;
+  transition: background $transition-default-out, color $transition-default-out;
+
+  &:hover {
+    background-color: $color-cool-grey-light;
+    color: $color-librocloud-slate;
+    cursor: pointer;
+    transition: background $transition-default-in, color $transition-default-in;
+  }
+}
+.e-select-checkbox .mat-checkbox-layout .mat-checkbox-label {
+  width: 0px;
+}
+
+// 12. Material Snackbar Overrides
+.mat-snack-bar-container.e-failure {
+  background: $color-error-light;
+
+  .mat-simple-snackbar {
+    span {
+      color: $color-error-dark;
+    }
+    span.mat-button-wrapper {
+      color: $color-error-dark;
+    }
+    button {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.mat-snack-bar-container.e-success {
+  background: $color-success-light;
+
+  .mat-simple-snackbar {
+    span {
+      color: $color-success-dark;
+    }
+    span.mat-button-wrapper {
+      color: $color-success-dark;
+    }
+    button {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

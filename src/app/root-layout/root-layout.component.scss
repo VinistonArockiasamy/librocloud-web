@@ -1,0 +1,47 @@
+@use "../../assets/scss/colors";
+@import "../../assets/scss/shared.scss";
+
+$app-width: 1360px;
+
+header {
+  background-color: lighten(colors.$light-slate, 40%);
+}
+
+header.page-header {
+  position: fixed;
+  top: 0;
+  width: $app-width;
+  z-index: 100;
+}
+
+.page-wrapper,
+.page-main {
+  background-color: #fff;
+  border-left: 1px solid $color-cool-grey-light;
+  border-right: 1px solid $color-cool-grey-light;
+  box-sizing: border-box;
+  height: 100%;
+  width: $app-width;
+}
+
+@media (min-width: 1367px) {
+  .page-wrapper,
+  .page-main {
+    box-shadow: 0px 0px 18px -3px rgba(0, 0, 0, 0.125);
+    margin: 0 auto;
+  }
+}
+
+main.page-main {
+  padding: 40px 25px 40px 10px;
+  overflow-y: auto;
+}
+
+footer {
+  background-color: lighten(colors.$light-slate, 50%);
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: $app-width;
+  z-index: 100;
+}

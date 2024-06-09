@@ -1,0 +1,13 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <app-header></app-header>
+  </header>
+  <main class="page-main">
+      <div *ngIf="isLoading" class="e-loading-spinner"></div>
+    <router-outlet>
+    </router-outlet>
+  </main>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>

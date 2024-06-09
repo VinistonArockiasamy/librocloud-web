@@ -1,0 +1,232 @@
+// Shared styling across components
+// ================================
+
+$white: #fff;
+$slate: #344955;
+$dark-slate: #232f34;
+$light-slate: #4a6572;
+$dark-blue: #325b9a;
+$bright-blue: #1d6be2;
+$orange: #e96d00;
+
+// Color Variables
+// ---------------
+// LibroCloud Brand colors
+$color-boysenberry: #a90060;
+$color-dark-blue: #1e22aa;
+$color-dark-slate: #003345;
+$color-librocloud-orange: #faa537;
+$color-librocloud-slate: #34657f;
+$color-librocloud-yellow: #ff9e1b;
+$color-orange: #ff6a13;
+$color-passport-blue: #00aed9;
+$color-teal: #008578;
+$color-teal-light: #01bba9;
+
+// Accessible Notification Colour Codes
+$color-error-dark: #83161a;
+$color-error-light: #ffd1db;
+$color-info-dark: #004370;
+$color-info-light: #c3deee;
+$color-success-dark: #214521;
+$color-success-light: #b2dcb2;
+
+// Grey and Neutral Colour Variants
+$color-cool-grey-light: #e9eeef;
+$color-grey-dark: #1b1b1b;
+$color-grey-dark-medium: #3e3e3e;
+$color-grey-medium: #909090;
+$color-grey-light-medium: #c1c1c1;
+$color-grey-light: #ededed;
+
+%e-primary-icon {
+    color: $color-librocloud-slate;
+}
+
+%e-secondary-icon {
+    color: $color-teal;
+}
+
+// Gradients
+$gradient-slate: linear-gradient(60deg, $color-info-dark, 40%, $color-librocloud-slate);
+$gradient-teal: linear-gradient(60deg, $color-teal, 40%, $color-teal-light);
+
+// Typography
+// ----------
+$primary-font: Roboto, "Helvetica Neue", sans-serif;
+
+@mixin font($size, $weight, $lh) {
+    font-family: $primary-font;
+    font-size: $size;
+    font-weight: $weight;
+    letter-spacing: 0.015rem;
+    line-height: $lh;
+}
+
+%heading-h1 {
+    @include font(18px, 700, 18px);
+}
+
+%prime-button {
+    @include font(14px, 400, 14px);
+}
+
+%heading-h3 {
+    @include font(16px, 500, 16px);
+}
+
+%heading-h4 {
+    @include font(14px, 500, 14px);
+}
+
+%paragraph {
+    @include font(12px, 400, 18px);
+}
+
+%text-link {
+    @include font(18px, 300, 18px);
+}
+
+// Layout & Positioning
+
+%flex-centered {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+// Buttons and Transition
+
+$transition-default-in: 0.15s ease-in-out;
+$transition-default-out: 0.35s ease-in-out;
+
+%e-button {
+    @extend %prime-button;
+    border: 1px solid $color-librocloud-slate;
+    border-radius: 5px;
+    height: 30px;
+    padding-top: 1px;
+    min-width: 110px;
+    transition: background $transition-default-out, border $transition-default-out, color $transition-default-out;
+
+    &:hover {
+        cursor: pointer;
+        transition: background $transition-default-in, border $transition-default-in,  color $transition-default-in;
+    }
+}
+
+.e-button-primary {
+    @extend %e-button;
+    background-color: $color-librocloud-slate !important;
+    color: #fff !important;
+
+    &:hover {
+        background-color: #fff !important;
+        color: $color-librocloud-slate !important;
+    }
+}
+
+.e-button-secondary {
+    @extend %e-button;
+    background-color: #fff;
+    color: $color-librocloud-slate;
+
+    &:hover {  
+        background-color: $color-librocloud-slate;
+        color: #fff;
+    }
+}
+
+.e-button-delete {
+    @extend %e-button;
+    background-color: $color-orange;
+    border-color: $color-orange;
+    color: #fff !important;
+
+    &:hover {
+        background-color: $color-grey-light-medium !important;
+        color: $color-orange;
+    }
+
+    &.mrgn-top {
+        margin-top: 15px;
+    }
+
+    .mat-button-focus-overlay {
+        background: transparent;
+    }
+}
+
+.e-button-primary:disabled, .e-button-secondary:disabled, .e-button-delete:disabled {
+    background-color: $color-grey-light-medium !important;
+    border-color: $color-grey-light-medium !important;
+    color: #fff;
+
+    &:hover {
+        background-color: $color-grey-light-medium !important;
+        border-color: $color-grey-light-medium !important;
+        color: #fff !important;
+        cursor: default;
+    }
+}
+
+.error-msg > div {
+    box-sizing: border-box;
+    color: $color-error-dark;
+    @include font(14px, 500, 16px);
+}
+
+// Loading Icon
+@keyframes spin {
+	0% {
+        transform: rotateZ(0);
+    }
+	100% {
+        transform: rotateZ(360deg);
+	}
+}
+
+@mixin spinner($thickness, $color) {
+    height: 40px;
+    overflow: hidden;
+    position: fixed;
+        top: 50%;
+        left: 53%;
+    text-indent: 1000px;
+    transform: translate(-50%,-50%);
+    width: 40px;
+    z-index: 99;
+
+    &:after {
+        animation: spin 0.75s infinite linear;
+        border: $thickness solid rgba(desaturate(lighten($color, 40%), 20%), 0.65);
+        border-left: $thickness solid $color;
+        border-radius: 50%;
+        content: '';
+        height: 28px;
+        position: absolute;
+            top: 0;
+            left: 0;
+        transform: translateZ(0);
+        width: 28px;
+    }
+}
+
+.e-loading-spinner {
+    @include spinner(4px, $color-teal-light);
+}
+
+// Display scroll bar for Safari
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #b7c8d1;
+}
+::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: rgba(156, 156, 156, .15);
+}
